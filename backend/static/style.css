@@ -115,7 +115,7 @@ body.light-mode {
 
 .brand-icon {
     font-size: 1.4rem;
-    color: #3b82f6;
+    color: var(--green-button);
     animation: twinkle 3s ease-in-out infinite;
 }
 
@@ -169,8 +169,8 @@ body.light-mode {
 
 .nav-link.active {
     color: #fff;
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, var(--orange-start), var(--orange-mid));
+    box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
 }
 
 .theme-toggle-btn {
@@ -255,7 +255,7 @@ body.chat-page {
 .splash-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(125deg, #60a5fa 0%, #3b82f6 40%, #1d4ed8 70%, #ffffff 100%);
+    background: linear-gradient(125deg, var(--orange-start) 0%, var(--orange-mid) 40%, var(--red-end) 70%, #ffffff 100%);
     z-index: 0;
 }
 
@@ -269,12 +269,12 @@ body.chat-page {
 }
 .splash-bg::before {
     width: 400px; height: 400px;
-    background: rgba(96, 165, 250, 0.35);
+    background: rgba(255, 123, 0, 0.35);
     top: -100px; left: -100px;
 }
 .splash-bg::after {
     width: 500px; height: 500px;
-    background: rgba(59, 130, 246, 0.25);
+    background: rgba(234, 88, 12, 0.25);
     bottom: -150px; right: -100px;
     animation-delay: -3s;
 }
@@ -307,7 +307,7 @@ body.chat-page {
     left: 50%;
     transform: translateX(-50%);
     width: 200px; height: 30px;
-    background: radial-gradient(ellipse, rgba(96,165,250,0.45) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(255,123,0,0.45) 0%, transparent 70%);
     filter: blur(10px);
 }
 
@@ -342,7 +342,7 @@ body.chat-page {
 
 .lang-card-sparkle {
     font-size: 2rem;
-    color: #3b82f6;
+    color: var(--green-button);
     margin-bottom: 12px;
     display: block;
     animation: twinkle 2s ease-in-out infinite;
@@ -399,23 +399,23 @@ body.chat-page {
 }
 
 .lang-btn-primary {
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    background: linear-gradient(135deg, var(--orange-start), var(--orange-mid));
     color: white;
-    box-shadow: 0 4px 20px rgba(96, 165, 250, 0.4);
+    box-shadow: 0 4px 20px rgba(234, 88, 12, 0.4);
 }
 .lang-btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(96, 165, 250, 0.5);
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.5);
 }
 
 .lang-btn-outline {
     background: transparent;
-    color: #3b82f6;
-    border-color: #bfdbfe;
+    color: var(--orange-mid);
+    border-color: var(--accent-orange);
 }
 .lang-btn-outline:hover {
-    background: #eff6ff;
-    border-color: #3b82f6;
+    background: rgba(255,123,0,0.1);
+    border-color: var(--orange-mid);
     transform: translateY(-2px);
 }
 
