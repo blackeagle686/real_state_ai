@@ -3,11 +3,21 @@ from backend.core.config import settings
 from backend.services.llm.longcat import llm_service
 from backend.services.tts.gtts_service import tts_service
 from backend.websocket.voice import router as voice_router
+from backend.services.chatbot_service import real_estate_chatbot
+from IRYM_sdk import init_irym, startup_irym
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
 )
+
+@app.on_event("startup")
+async def startup_event():
+    print("[*] Initializing IRYM Infrastructure...")
+    init_irym()
+    await startup_irym()
+    await real_estate_chatbot.initialize()
+    print("[+] System Ready.")
 
 app.include_router(voice_router)
 
@@ -18,6 +28,17 @@ async def root():
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
+
+@app.post("/api/chat")
+async def chat_with_assistant(request: dict):
+    message = request.get("message", "")
+    session_id = request.get("session_id", "default_user")
+    
+    if not message:
+        return {"error": "Message is required"}
+        
+    response = await real_estate_chatbot.chat(message, session_id=session_id)
+    return {"response": response}
 
 @app.post("/api/voice/generate")
 async def generate_voice(request: dict):

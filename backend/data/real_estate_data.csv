@@ -1,0 +1,9 @@
+id,type,location,price,currency,size_sqm,rooms,rating,description
+1,apartment,Riyadh,750000,SAR,120,3,4.5,Modern apartment in the heart of Riyadh with city view.
+2,apartment,Jeddah,600000,SAR,110,2,4.2,Cozy apartment near the Corniche.
+3,land,Riyadh,1200000,SAR,500,0,4.8,Residential land in a quiet neighborhood.
+4,apartment,Dammam,500000,SAR,130,4,3.9,Spacious family apartment in Dammam.
+5,land,Jeddah,2500000,SAR,1000,0,4.9,Prime commercial land on King Road.
+6,apartment,Riyadh,900000,SAR,150,3,4.6,Luxury apartment with smart home features.
+7,apartment,Makkah,850000,SAR,100,2,4.7,Close to the Haram, high rental potential.
+8,land,Madinah,1500000,SAR,800,0,4.5,Well-located land for development.
