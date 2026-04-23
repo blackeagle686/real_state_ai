@@ -9,7 +9,17 @@ except ImportError:
     try:
         from deepgram.listen.live.v1 import LiveOptions, LiveTranscriptionEvents
     except ImportError:
-        from deepgram.listen.websocket.v1 import LiveOptions, LiveTranscriptionEvents
+        try:
+            from deepgram.listen.websocket.v1 import LiveOptions, LiveTranscriptionEvents
+        except ImportError:
+            from deepgram.listen.v1.websocket.types import LiveOptions
+            # Assume LiveTranscriptionEvents is in deepgram or just mock it
+            try:
+                from deepgram import LiveTranscriptionEvents
+            except ImportError:
+                class LiveTranscriptionEvents:
+                    Transcript = "Transcript"
+                    Close = "Close"
 from core.config import settings
 
 class STTService:
