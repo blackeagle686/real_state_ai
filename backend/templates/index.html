@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Smart Shopping — MarketAI{% endblock %}
+{% block title %}EstateAI — Smart Property Assistant{% endblock %}
 
 {% block head %}
 {{ super() }}
@@ -36,17 +36,17 @@
     <div id="splash-screen" class="splash">
         <div class="splash-bg"></div>
 
-        <!-- Robot Mascot -->
+        <!-- Robot Mascot (Optional: replace with house icon or real estate image) -->
         <div class="robot-wrapper">
             <div class="robot-glow"></div>
-            <img src="/static/robot.png" alt="MarketAI Cat Robot" class="robot-img" id="robot-img">
+            <img src="/static/robot.png" alt="EstateAI Assistant" class="robot-img" id="robot-img">
         </div>
 
         <!-- Language Card -->
         <div class="lang-card" id="lang-card">
-            <div class="lang-card-sparkle">✦</div>
-            <h1 class="lang-card-title">Smart Shopping</h1>
-            <p class="lang-card-subtitle">Your AI assistant inside the supermarket</p>
+            <div class="lang-card-sparkle">🏠</div>
+            <h1 class="lang-card-title">Real Estate AI</h1>
+            <p class="lang-card-subtitle">Your expert assistant for properties and land</p>
 
             <div class="lang-divider"></div>
             <p class="lang-label">Choose your language</p>
@@ -96,17 +96,17 @@
                 <div class="suggestions-row">
                     <button class="suggestion-chip">
                         <i class="bi bi-search"></i>
-                        what is the proudcts in partition number 1
+                        What is the average price of land in Riyadh?
                     </button>
                     <button class="suggestion-chip">
-                        <i class="bi bi-box-seam"></i>
-                        show me a list of milk proudcts
+                        <i class="bi bi-building"></i>
+                        Rank 3-bedroom apartments in Jeddah by price.
                     </button>
                 </div>
                 <div class="suggestions-row">
                     <button class="suggestion-chip">
-                        <i class="bi bi-geo-alt"></i>
-                        what about oil
+                        <i class="bi bi-graph-up"></i>
+                        Give me investment recommendations for Dammam.
                     </button>
                 </div>
             </div>
@@ -151,7 +151,7 @@
                 <span class="footer-text" id="footer-text">AWAITING VOICE INPUT</span>
             </div>
             <div class="footer-right">
-                <div class="logo">MarketAI</div>
+                <div class="logo">EstateAI</div>
             </div>
         </footer>
     </div>
