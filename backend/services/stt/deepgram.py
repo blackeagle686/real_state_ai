@@ -1,10 +1,7 @@
 import json
 import asyncio
-from deepgram import (
-    DeepgramClient,
-    LiveOptions,
-    LiveTranscriptionEvents,
-)
+from deepgram import DeepgramClient
+from deepgram.clients.live.v1 import LiveOptions, LiveTranscriptionEvents
 from core.config import settings
 
 class STTService:
