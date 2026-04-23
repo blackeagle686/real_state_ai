@@ -1,8 +1,8 @@
 import asyncio
 import json
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
-from backend.services.stt.deepgram import stt_service
-from backend.services.pipeline import pipeline_coordinator
+from services.stt.deepgram import stt_service
+from services.pipeline import pipeline_coordinator
 
 router = APIRouter()
 

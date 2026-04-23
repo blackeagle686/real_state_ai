@@ -1,8 +1,8 @@
 import asyncio
 from typing import AsyncGenerator
-from backend.services.llm.longcat import llm_service
-from backend.services.tts.elevenlabs import tts_service
-from backend.utils.token_buffer import TokenBuffer
+from services.llm.longcat import llm_service
+from services.tts.elevenlabs import tts_service
+from utils.token_buffer import TokenBuffer
 
 class PipelineCoordinator:
     def __init__(self):
