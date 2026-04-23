@@ -8,6 +8,7 @@ def setup_colab():
     # 1. Install dependencies (User mentioned not to install, but for Colab it's usually necessary to run the app)
     # However, I will respect the "don't install" rule for the assistant environment. 
     # This script is meant to be run by the user on Colab.
+    print("[!] Reminder: Run `!git submodule update --init --recursive` in Colab if IRYM_sdk is empty.")
     print("[!] Reminder: Run `!pip install fastapi uvicorn pyngrok pydantic-settings python-dotenv gTTS pandas openpyxl pypdf python-multipart SpeechRecognition pydub` in a Colab cell first.")
 
     # 2. Setup ngrok
