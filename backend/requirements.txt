@@ -1,0 +1,29 @@
+# FastAPI & Web Server
+fastapi
+uvicorn
+jinja2
+python-multipart
+pydantic-settings
+python-dotenv
+pyngrok
+
+# AI & RAG
+openai
+chromadb
+sentence-transformers
+beautifulsoup4
+requests
+httpx
+
+# Data Processing
+pandas
+openpyxl
+pypdf
+python-docx
+
+# Infrastructure
+redis
+sqlalchemy
+
+# Submodule dependencies (reference)
+# - ./IRYM_sdk
