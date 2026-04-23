@@ -31,7 +31,11 @@ class STTService:
         Establishes a streaming connection to Deepgram (v3 syntax).
         """
         try:
-            dg_connection = self.dg_client.listen.live.v("1")
+            # Handle deepgram client path changes across versions
+            if hasattr(self.dg_client.listen, 'websocket'):
+                dg_connection = self.dg_client.listen.websocket.v("1")
+            else:
+                dg_connection = self.dg_client.listen.live.v("1")
             
             options = LiveOptions(
                 punctuate=True,
