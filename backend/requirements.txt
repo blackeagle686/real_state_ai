@@ -15,6 +15,7 @@ beautifulsoup4
 requests
 httpx
 gTTS
+deepgram-sdk
 
 # Data Processing
 pandas
