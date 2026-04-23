@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Shopping — MarketAI{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+    /* Hide site header when splash is active */
+    #site-header {
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .splash-active #site-header {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    /* Adjust main UI to account for site header */
+    .voice-assistant-container {
+        padding-top: 0;
+    }
+    
+    /* Existing custom header override for index page if needed */
+    .index-actions {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block body_class %}chat-page splash-active{% endblock %}
+
+{% block content %}
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splash-screen" class="splash">
+        <div class="splash-bg"></div>
+
+        <!-- Robot Mascot -->
+        <div class="robot-wrapper">
+            <div class="robot-glow"></div>
+            <img src="/static/robot.png" alt="MarketAI Cat Robot" class="robot-img" id="robot-img">
+        </div>
+
+        <!-- Language Card -->
+        <div class="lang-card" id="lang-card">
+            <div class="lang-card-sparkle">✦</div>
+            <h1 class="lang-card-title">Smart Shopping</h1>
+            <p class="lang-card-subtitle">Your AI assistant inside the supermarket</p>
+
+            <div class="lang-divider"></div>
+            <p class="lang-label">Choose your language</p>
+
+            <div class="lang-buttons">
+                <button class="lang-btn lang-btn-primary" id="btn-english" onclick="enterChat('en')">English</button>
+                <button class="lang-btn lang-btn-outline" id="btn-arabic" onclick="enterChat('ar')">العربية</button>
+            </div>
+        </div>
+
+        <!-- Feature Pills -->
+        <!-- <div class="feature-pills">
+            <div class="feature-pill">
+                <span class="pill-icon">🎤</span> Voice &amp; Image Search
+            </div>
+            <div class="feature-pill">
+                <span class="pill-icon">🛡️</span> Robot-guided navigation
+            </div>
+        </div> -->
+    </div>
+
+    <!-- ===== CHAT ASSISTANT VIEW ===== -->
+    <div id="main-ui" class="voice-assistant-container d-none">
+        <button class="exit-btn" id="exit-btn" onclick="exitToSplash()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+        <!-- Main Voice View -->
+        <main class="va-main mt-4" id="va-main-view">
+            <h2 class="status-text" id="main-status-text">Listening...</h2>
+
+            <div class="mic-wrapper" id="main-mic-wrapper">
+                <div class="mic-ring outer-ring"></div>
+                <div class="mic-ring inner-ring"></div>
+                <button id="main-mic-btn" class="mic-button" aria-label="Microphone">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="transcript-preview" id="transcript-preview"></div>
+
+            <div class="suggestions-section" id="suggestions-section">
+                <div class="suggestions-label">TRY ASKING</div>
+                <div class="suggestions-row">
+                    <button class="suggestion-chip">
+                        <i class="bi bi-search"></i>
+                        what is the proudcts in partition number 1
+                    </button>
+                    <button class="suggestion-chip">
+                        <i class="bi bi-box-seam"></i>
+                        show me a list of milk proudcts
+                    </button>
+                </div>
+                <div class="suggestions-row">
+                    <button class="suggestion-chip">
+                        <i class="bi bi-geo-alt"></i>
+                        what about oil
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Chat Overlay -->
+        <div id="chat-window-container" class="d-none">
+            <div class="chat-header-inner">
+                <button id="close-chat-btn" class="close-chat">
+                    <i class="bi bi-arrow-left"></i> Back to Voice
+                </button>
+            </div>
+            <div id="chat-window" class="chat-window"></div>
+            <form id="chat-form" class="hidden-chat-form">
+                <div class="input-group">
+                    <input type="text" id="user-input" class="form-control" autocomplete="off" placeholder="Type your question...">
+                    <button type="button" id="chat-mic-btn" class="btn btn-mic-chat" title="Voice Input">
+                        <i class="bi bi-mic-fill"></i>
+                    </button>
+                    <button type="submit" id="send-btn" class="btn btn-send-chat">Send</button>
+                </div>
+            </form>
+            <div id="reply-indicator" class="reply-indicator d-none">
+                <span>Replying to: <strong id="reply-snippet"></strong></span>
+                <button type="button" id="cancel-reply" class="btn-close" aria-label="Close"></button>
+            </div>
+            <!-- Dummy refs for main.js -->
+            <div id="mic-btn" style="display:none;"></div>
+            <div id="voice-status" style="display:none;"></div>
+            <div id="voice-status-text" style="display:none;"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="va-footer pt-5">
+            <div class="footer-left">
+                <div class="equalizer" id="footer-equalizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <span class="footer-text" id="footer-text">AWAITING VOICE INPUT</span>
+            </div>
+            <div class="footer-right">
+                <div class="logo">MarketAI</div>
+            </div>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        // --- Splash Logic ---
+        function enterChat(lang) {
+            // Remove splash effects immediately
+            document.body.classList.remove('splash-active');
+            const splash = document.getElementById('splash-screen');
+            splash.style.opacity = '0';
+            splash.style.transform = 'scale(1.05)';
+            
+            setTimeout(() => {
+                splash.classList.add('d-none');
+                const ui = document.getElementById('main-ui');
+                ui.classList.remove('d-none');
+                ui.style.display = 'flex'; // Ensure flexbox layout
+                ui.style.opacity = '0';
+                setTimeout(() => { 
+                    ui.style.opacity = '1'; 
+                    // Set language
+                    if (lang) document.documentElement.lang = lang;
+                }, 50);
+            }, 400);
+        }
+
+        function exitToSplash() {
+            document.body.classList.add('splash-active');
+            const ui = document.getElementById('main-ui');
+            ui.style.opacity = '0';
+            setTimeout(() => {
+                ui.classList.add('d-none');
+                const splash = document.getElementById('splash-screen');
+                splash.classList.remove('d-none');
+                splash.style.opacity = '0';
+                splash.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    splash.style.opacity = '1';
+                    splash.style.transform = 'scale(1)';
+                }, 50);
+            }, 300);
+        }
+
+        // Check for direct chat start from header
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('start') === 'chat') {
+                // If coming from header, bypass splash animations and go straight to chat
+                document.body.classList.remove('splash-active');
+                document.getElementById('splash-screen').classList.add('d-none');
+                const ui = document.getElementById('main-ui');
+                ui.classList.remove('d-none');
+                ui.style.opacity = '1';
+                ui.style.display = 'flex';
+            }
+        });
+    </script>
+{% endblock %}
