@@ -1,7 +1,7 @@
 import json
 import asyncio
 from deepgram import Deepgram
-from backend.core.config import settings
+from core.config import settings
 
 class STTService:
     def __init__(self):

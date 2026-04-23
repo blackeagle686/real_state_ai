@@ -1,9 +1,9 @@
 import httpx
-from backend.core.config import settings
+from core.config import settings
 from typing import AsyncGenerator
 
-from backend.core.cache import cache_service
-from backend.utils.logger import logger
+from core.cache import cache_service
+from utils.logger import logger
 
 class ElevenLabsService:
     def __init__(self):
