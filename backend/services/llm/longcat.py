@@ -1,5 +1,5 @@
 import openai
-from backend.core.config import settings
+from core.config import settings
 
 class LLMService:
     def __init__(self):
