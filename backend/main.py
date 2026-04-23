@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Response, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from backend.core.config import settings
-from backend.services.llm.longcat import llm_service
-from backend.services.tts.gtts_service import tts_service
-from backend.websocket.voice import router as voice_router
-from backend.services.chatbot_service import real_estate_chatbot
+from core.config import settings
+from services.llm.longcat import llm_service
+from services.tts.gtts_service import tts_service
+from websocket.voice import router as voice_router
+from services.chatbot_service import real_estate_chatbot
 from IRYM_sdk import init_irym, startup_irym
 import os
 
