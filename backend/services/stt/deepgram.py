@@ -1,7 +1,15 @@
 import json
 import asyncio
 from deepgram import DeepgramClient
-from deepgram.clients.live.v1 import LiveOptions, LiveTranscriptionEvents
+
+# Robust import block to handle different Deepgram SDK versions (v3 to v6+)
+try:
+    from deepgram import LiveOptions, LiveTranscriptionEvents
+except ImportError:
+    try:
+        from deepgram.listen.live.v1 import LiveOptions, LiveTranscriptionEvents
+    except ImportError:
+        from deepgram.listen.websocket.v1 import LiveOptions, LiveTranscriptionEvents
 from core.config import settings
 
 class STTService:
