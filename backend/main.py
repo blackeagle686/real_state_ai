@@ -7,7 +7,7 @@ from services.tts.gtts_service import tts_service
 from services.stt.speech_recognition_service import sr_service
 from fastapi import UploadFile, File, Form
 from services.chatbot_service import real_estate_chatbot
-from IRYM_sdk import init_irym, startup_irym
+from IRYM_sdk import init_irym, startup_irym, set_providers
 import os
 
 app = FastAPI(
@@ -19,6 +19,7 @@ app = FastAPI(
 async def startup_event():
     print("[*] Initializing IRYM Infrastructure...")
     init_irym()
+    set_providers(llm_provider="openai", vlm_provider="openai")
     await startup_irym()
     await real_estate_chatbot.initialize()
     print("[+] System Ready.")
