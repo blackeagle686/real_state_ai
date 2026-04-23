@@ -1,6 +1,6 @@
 import redis.asyncio as redis
 import hashlib
-from backend.core.config import settings
+from core.config import settings
 
 class CacheService:
     def __init__(self):
