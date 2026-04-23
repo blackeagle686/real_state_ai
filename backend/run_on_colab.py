@@ -5,18 +5,21 @@ import subprocess
 def setup_colab():
     print("[*] Setting up environment for Colab...")
     
-    # Automatically initialize git submodules from the parent directory (project root)
-    print("[*] Checking IRYM_sdk submodule...")
+    # Automatically fetch IRYM_sdk from GitHub
+    print("[*] Checking IRYM_sdk...")
     try:
         if not os.path.exists("IRYM_sdk/__init__.py"):
-            print("[!] IRYM_sdk seems empty. Attempting to initialize submodule from root...")
-            subprocess.run(["git", "submodule", "update", "--init", "--recursive"], cwd="..", check=True)
-            if not os.path.exists("IRYM_sdk/__init__.py"):
-                print("[-] WARNING: Submodule still seems empty after update. Check repository permissions.")
+            print("[!] IRYM_sdk seems empty. Cloning directly from GitHub...")
+            # If the directory exists but is empty, we must remove it first or clone into it
+            if os.path.exists("IRYM_sdk"):
+                import shutil
+                shutil.rmtree("IRYM_sdk")
+            subprocess.run(["git", "clone", "https://github.com/blackeagle686/IRYM_sdk.git"], check=True)
+            print("[+] IRYM_sdk cloned successfully.")
         else:
-            print("[+] Submodule already initialized.")
+            print("[+] IRYM_sdk already present.")
     except Exception as e:
-        print(f"[-] Could not initialize submodule: {e}")
+        print(f"[-] Could not fetch IRYM_sdk: {e}")
 
     print("[!] Reminder: Run `!pip install fastapi uvicorn pyngrok pydantic-settings python-dotenv gTTS pandas openpyxl pypdf python-multipart SpeechRecognition pydub` in a Colab cell first.")
 
