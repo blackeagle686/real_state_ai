@@ -5,11 +5,16 @@ import subprocess
 def setup_colab():
     print("[*] Setting up environment for Colab...")
     
-    # Automatically initialize git submodules
+    # Automatically initialize git submodules from the parent directory (project root)
     print("[*] Checking IRYM_sdk submodule...")
     try:
-        subprocess.run(["git", "submodule", "update", "--init", "--recursive"], check=True)
-        print("[+] Submodule initialized successfully.")
+        if not os.path.exists("IRYM_sdk/__init__.py"):
+            print("[!] IRYM_sdk seems empty. Attempting to initialize submodule from root...")
+            subprocess.run(["git", "submodule", "update", "--init", "--recursive"], cwd="..", check=True)
+            if not os.path.exists("IRYM_sdk/__init__.py"):
+                print("[-] WARNING: Submodule still seems empty after update. Check repository permissions.")
+        else:
+            print("[+] Submodule already initialized.")
     except Exception as e:
         print(f"[-] Could not initialize submodule: {e}")
 
