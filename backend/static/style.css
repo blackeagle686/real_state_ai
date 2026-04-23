@@ -465,8 +465,8 @@ body.chat-page {
     position: relative;
     z-index: 10;
     gap: 20px;
-    background: linear-gradient(135deg, rgba(192, 232, 255, 0.32), rgba(96, 165, 250, 0.16));
-    border-bottom: 1px solid rgba(96, 165, 250, 0.18);
+    background: linear-gradient(135deg, rgba(255, 237, 213, 0.32), rgba(234, 88, 12, 0.16));
+    border-bottom: 1px solid rgba(234, 88, 12, 0.18);
     backdrop-filter: blur(18px);
     box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
     border-radius: 0 0 28px 28px;
@@ -526,7 +526,7 @@ body.chat-page {
 .icon-close {
     width: 36px;
     height: 36px;
-    background: linear-gradient(135deg, var(--green-primary), var(--blue-end));
+    background: linear-gradient(135deg, var(--green-primary), var(--red-end));
     color: white;
     border-radius: 50%;
     display: flex;
@@ -552,23 +552,23 @@ body.light-mode .va-title {
     color: var(--text-main);
 }
 
-/* Chat View Header — modern blue glass effect */
+/* Chat View Header — modern glass effect */
 .voice-assistant-container .va-header {
-    background: linear-gradient(135deg, rgba(192,232,255,0.42), rgba(59,130,246,0.18));
-    border-bottom: 1px solid rgba(59,130,246,0.22);
+    background: linear-gradient(135deg, rgba(255,237,213,0.42), rgba(234,88,12,0.18));
+    border-bottom: 1px solid rgba(234,88,12,0.22);
     box-shadow: 0 18px 55px rgba(15,23,42,0.08);
 }
 
 body.light-mode .voice-assistant-container .va-header {
-    background: rgba(248,250,252,0.94);
-    border-bottom: 1px solid rgba(96,165,250,0.18);
+    background: rgba(255,247,237,0.94);
+    border-bottom: 1px solid rgba(255,123,0,0.18);
     box-shadow: 0 14px 40px rgba(15,23,42,0.05);
 }
 
 .catalog-btn {
-    background: rgba(59,130,246,0.16);
+    background: rgba(234,88,12,0.16);
     color: var(--text-main);
-    border: 1px solid rgba(59,130,246,0.28);
+    border: 1px solid rgba(234,88,12,0.28);
     border-radius: 999px;
     padding: 10px 18px;
     font-size: 0.82rem;
@@ -580,18 +580,18 @@ body.light-mode .voice-assistant-container .va-header {
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
 }
 .catalog-btn:hover {
-    background: rgba(59,130,246,0.32);
+    background: rgba(234,88,12,0.32);
     color: #fff;
     transform: translateY(-1px);
 }
 
 body.light-mode .catalog-btn {
-    background: rgba(59,130,246,0.12);
-    color: #1d4ed8;
-    border-color: rgba(96,165,250,0.3);
+    background: rgba(234,88,12,0.12);
+    color: var(--red-end);
+    border-color: rgba(255,123,0,0.3);
 }
 body.light-mode .catalog-btn:hover {
-    background: rgba(59,130,246,0.28);
+    background: rgba(234,88,12,0.28);
     color: #fff;
 }
 
@@ -613,8 +613,8 @@ body.light-mode .catalog-btn:hover {
     transform: translateY(-1px);
 }
 body.light-mode .icon-btn:hover {
-    background: rgba(59, 130, 246, 0.16);
-    color: #1d4ed8;
+    background: rgba(234, 88, 12, 0.16);
+    color: var(--red-end);
 }
 
 .header-actions {
@@ -699,7 +699,7 @@ body.light-mode .icon-btn:hover {
     font-weight: 800;
     letter-spacing: -1px;
     margin-bottom: 50px;
-    background: linear-gradient(135deg, #bfdbfe, #60a5fa);
+    background: linear-gradient(135deg, var(--accent-orange), var(--orange-start));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease;
@@ -751,7 +751,7 @@ body.light-mode .icon-btn:hover {
 }
 
 body.light-mode .mic-ring {
-    background: rgba(59, 130, 246, 0.18);
+    background: rgba(234, 88, 12, 0.18);
     opacity: 0.6;
 }
 
