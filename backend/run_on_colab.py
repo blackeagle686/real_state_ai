@@ -11,8 +11,7 @@ def setup_colab():
     print("[!] Reminder: Run `!pip install fastapi uvicorn pyngrok pydantic-settings python-dotenv` in a Colab cell first.")
 
     # 2. Setup ngrok
-    # User will need to set NGROK_AUTH_TOKEN in environment or here
-    auth_token = os.environ.get("NGROK_AUTH_TOKEN", "")
+    auth_token = os.environ.get("NGROK_AUTH_TOKEN", "36jW6kAV8Inp5SHYiuIicuuRols_7NkiWdLme3iULLJx3gMS5")
     if not auth_token:
         print("[!] Warning: NGROK_AUTH_TOKEN not found in environment.")
         print("Please set it with: os.environ['NGROK_AUTH_TOKEN'] = 'your_token'")
