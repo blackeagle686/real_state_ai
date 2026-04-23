@@ -1,29 +1,28 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from backend.core.config import settings
 from backend.services.llm.longcat import llm_service
 from backend.services.tts.gtts_service import tts_service
 from backend.websocket.voice import router as voice_router
 from backend.services.chatbot_service import real_estate_chatbot
 from IRYM_sdk import init_irym, startup_irym
+import os
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
 )
 
-@app.on_event("startup")
-async def startup_event():
-    print("[*] Initializing IRYM Infrastructure...")
-    init_irym()
-    await startup_irym()
-    await real_estate_chatbot.initialize()
-    print("[+] System Ready.")
-
 app.include_router(voice_router)
 
+# Setup Static Files and Templates
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
+
 @app.get("/")
-async def root():
-    return {"message": f"Welcome to {settings.PROJECT_NAME}"}
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request, "project_name": settings.PROJECT_NAME})
 
 @app.get("/health")
 async def health_check():
