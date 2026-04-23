@@ -5,10 +5,14 @@ import subprocess
 def setup_colab():
     print("[*] Setting up environment for Colab...")
     
-    # 1. Install dependencies (User mentioned not to install, but for Colab it's usually necessary to run the app)
-    # However, I will respect the "don't install" rule for the assistant environment. 
-    # This script is meant to be run by the user on Colab.
-    print("[!] Reminder: Run `!git submodule update --init --recursive` in Colab if IRYM_sdk is empty.")
+    # Automatically initialize git submodules
+    print("[*] Checking IRYM_sdk submodule...")
+    try:
+        subprocess.run(["git", "submodule", "update", "--init", "--recursive"], check=True)
+        print("[+] Submodule initialized successfully.")
+    except Exception as e:
+        print(f"[-] Could not initialize submodule: {e}")
+
     print("[!] Reminder: Run `!pip install fastapi uvicorn pyngrok pydantic-settings python-dotenv gTTS pandas openpyxl pypdf python-multipart SpeechRecognition pydub` in a Colab cell first.")
 
     # 2. Setup ngrok
