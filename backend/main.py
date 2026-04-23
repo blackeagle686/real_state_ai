@@ -14,11 +14,20 @@ app = FastAPI(
     version=settings.VERSION,
 )
 
+@app.on_event("startup")
+async def startup_event():
+    print("[*] Initializing IRYM Infrastructure...")
+    init_irym()
+    await startup_irym()
+    await real_estate_chatbot.initialize()
+    print("[+] System Ready.")
+
 app.include_router(voice_router)
 
 # Setup Static Files and Templates
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 @app.get("/")
 async def root(request: Request):
