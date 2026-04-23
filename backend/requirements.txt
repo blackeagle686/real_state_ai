@@ -15,7 +15,8 @@ beautifulsoup4
 requests
 httpx
 gTTS
-deepgram-sdk
+SpeechRecognition
+pydub
 
 # Data Processing
 pandas
