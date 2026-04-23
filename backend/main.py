@@ -4,7 +4,8 @@ from fastapi.templating import Jinja2Templates
 from core.config import settings
 from services.llm.longcat import llm_service
 from services.tts.gtts_service import tts_service
-from websocket.voice import router as voice_router
+from services.stt.speech_recognition_service import sr_service
+from fastapi import UploadFile, File, Form
 from services.chatbot_service import real_estate_chatbot
 from IRYM_sdk import init_irym, startup_irym
 import os
@@ -22,7 +23,7 @@ async def startup_event():
     await real_estate_chatbot.initialize()
     print("[+] System Ready.")
 
-app.include_router(voice_router)
+# Removed websocket router since we use /transcribe now
 
 # Setup Static Files and Templates
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -46,7 +47,19 @@ async def chat_with_assistant(request: dict):
         return {"error": "Message is required"}
         
     response = await real_estate_chatbot.chat(message, session_id=session_id)
-    return {"response": response}
+    return {"answer": response}
+
+@app.post("/transcribe")
+async def transcribe_audio(audio: UploadFile = File(...), lang: str = Form("en")):
+    """
+    Receives WebM audio from the frontend, converts it, and returns the transcript using SpeechRecognition.
+    """
+    audio_bytes = await audio.read()
+    # Map frontend lang code to speech_recognition format
+    sr_lang = "ar-SA" if "ar" in lang.lower() else "en-US"
+    
+    text = await sr_service.transcribe_audio(audio_bytes, lang=sr_lang)
+    return {"text": text}
 
 @app.post("/api/voice/generate")
 async def generate_voice(request: dict):

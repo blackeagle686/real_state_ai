@@ -191,11 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const loadingMsg = appendMessage('', 'bot', true);
 
         try {
-            const formData = new FormData();
-            formData.append('text', text);
-            formData.append('session_id', sessionId);
-
-            const response = await fetch('/chat', { method: 'POST', body: formData });
+            const response = await fetch('/api/chat', { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, session_id: sessionId }) 
+            });
             const data = await response.json();
 
             chatWindow.removeChild(loadingMsg);
