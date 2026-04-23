@@ -76,6 +76,15 @@
         width: 100%;
         z-index: 10;
     }
+    @media (max-width: 768px) {
+        .property-grid {
+            grid-template-columns: 1fr;
+            padding: 0 40px;
+        }
+        .property-card img {
+            height: 150px;
+        }
+    }
 </style>
 {% endblock %}
 
