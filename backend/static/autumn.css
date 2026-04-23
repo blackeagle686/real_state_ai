@@ -1,0 +1,115 @@
+:root {
+    /* Autumn Palette */
+    --primary-orange: #ff7b00;
+    --primary-red: #d00000;
+    --autumn-gradient: linear-gradient(135deg, #ff7b00 0%, #d00000 100%);
+    --bg-light: #ffffff;
+    --bg-dark: #0a0a0a;
+    --text-light: #1a1a1a;
+    --text-dark: #f0f0f0;
+    --card-bg-light: rgba(255, 255, 255, 0.8);
+    --card-bg-dark: rgba(20, 20, 20, 0.8);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.light-mode {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+}
+
+/* Splash Screen Upgrade */
+.splash {
+    background: radial-gradient(circle at center, rgba(255, 123, 0, 0.15) 0%, #000 100%);
+}
+
+.light-mode .splash {
+    background: radial-gradient(circle at center, rgba(255, 123, 0, 0.1) 0%, #fff 100%);
+}
+
+.robot-img {
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(255, 123, 0, 0.3);
+    border: 2px solid rgba(255, 123, 0, 0.2);
+}
+
+.lang-card {
+    background: var(--card-bg-dark) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 123, 0, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.light-mode .lang-card {
+    background: var(--card-bg-light) !important;
+    border: 1px solid rgba(255, 123, 0, 0.2);
+    box-shadow: 0 30px 60px rgba(255, 123, 0, 0.1);
+}
+
+.lang-btn-primary {
+    background: var(--autumn-gradient) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 600;
+}
+
+.lang-btn-outline {
+    border: 2px solid var(--primary-orange) !important;
+    color: var(--primary-orange) !important;
+}
+
+.lang-btn-outline:hover {
+    background: var(--primary-orange) !important;
+    color: white !important;
+}
+
+/* Mic Button Upgrade */
+.mic-button {
+    background: var(--autumn-gradient) !important;
+    box-shadow: 0 0 30px rgba(255, 123, 0, 0.5);
+}
+
+.mic-ring {
+    border-color: var(--primary-orange) !important;
+}
+
+/* Suggestions */
+.suggestion-chip {
+    background: rgba(255, 123, 0, 0.1) !important;
+    border: 1px solid rgba(255, 123, 0, 0.2) !important;
+    color: var(--primary-orange) !important;
+}
+
+.suggestion-chip:hover {
+    background: var(--primary-orange) !important;
+    color: white !important;
+}
+
+/* Header & Navigation */
+.brand-icon {
+    color: var(--primary-orange);
+}
+
+.nav-link.active {
+    color: var(--primary-orange) !important;
+}
+
+.nav-link.active i {
+    color: var(--primary-orange);
+}
+
+/* Chat Bubbles */
+.chat-bubble.ai {
+    background: rgba(255, 123, 0, 0.1) !important;
+    border-left: 4px solid var(--primary-orange) !important;
+}
+
+.chat-bubble.user {
+    background: var(--autumn-gradient) !important;
+    color: white !important;
+}
